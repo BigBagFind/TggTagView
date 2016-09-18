@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+//typedef void(^Block)(CGFloat contentHeight);
 @interface TggTagViewLayout : UICollectionViewFlowLayout
+
+
+@property (nonatomic, copy) void(^CompleteBlock)(CGFloat contentHeight);
+
+
 
 @end

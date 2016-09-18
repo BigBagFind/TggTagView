@@ -16,8 +16,6 @@ static NSString *identifier = @"TagViewCellReuseIdentifier";
 
 @interface TggTagView () <UICollectionViewDataSource,UICollectionViewDelegate>
 
-@property (nonatomic, strong) UICollectionView *collectionView;
-
 
 
 @end
@@ -41,13 +39,12 @@ static NSString *identifier = @"TagViewCellReuseIdentifier";
 
 - (void)prepareView {
     
-    TggTagViewLayout *layout = [[TggTagViewLayout alloc] init];
-    layout.minimumLineSpacing = 16;
-    layout.minimumInteritemSpacing = 16;
-    layout.sectionInset = UIEdgeInsetsMake(16, 16, 16, 16);
+    self.layout = [[TggTagViewLayout alloc] init];
+    self.layout.minimumLineSpacing = 16;
+    self.layout.minimumInteritemSpacing = 16;
+    self.layout.sectionInset = UIEdgeInsetsMake(16, 16, 16, 16);
     
-    
-    self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.layout];
     [self addSubview:self.collectionView];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
@@ -57,6 +54,9 @@ static NSString *identifier = @"TagViewCellReuseIdentifier";
     if (!self.tagAttribute) {
         self.tagAttribute = [TggTagAttribute new];
     }
+
+    
+    
 }
 
 - (void)layoutSubviews {

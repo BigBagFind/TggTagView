@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class TggTagViewLayout;
 @class TggTagAttribute;
 
 @interface TggTagView : UIView
@@ -22,6 +23,15 @@
 
 /** 刷新数据 */
 - (void)reloadData;
+
+
+
+@property (nonatomic, strong) TggTagViewLayout *layout;
+
+@property (nonatomic, strong) UICollectionView *collectionView;
+
+
+
 
 
 @end

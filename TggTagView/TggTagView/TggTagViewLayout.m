@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *itemAttributes;
 
 @property (nonatomic, assign) CGFloat contentWidth;//滑动宽度 水平
+
 @property (nonatomic, assign) CGFloat contentHeight;//滑动高度 垂直
 
 
@@ -73,6 +74,11 @@
     }
     
     self.contentHeight += self.sectionInset.bottom;
+    //NSLog(@"%lf",self.contentHeight);
+    
+    if (self.contentHeight > 0) {
+        self.CompleteBlock(self.contentHeight);
+    }
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {

@@ -8,8 +8,11 @@
 
 #import "ViewController.h"
 #import "TggTagView.h"
+#import "TggTagViewLayout.h"
 
 @interface ViewController ()
+
+@property TggTagView *tagView;
 
 @end
 
@@ -18,22 +21,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    TggTagView *tagView = [TggTagView new];
-    tagView.frame = CGRectMake(0, 150, 375, 300);
-    [self.view addSubview:tagView];
-    tagView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.1];
+    _tagView = [TggTagView new];
+    _tagView.frame = CGRectMake(0, 150, 375, 300);
+    [self.view addSubview:_tagView];
+    _tagView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.1];
     
     NSArray *tagData = @[
                          @"爱疯七",
                          @"爱拍得云空气二256G",
                          @"爱剖得四",
                          @"麦克布克铺肉128G8G闪存Retina屏幕",
-                         @"EarPods耳机1288元"
+                         @"EarPods耳机1288元",
+                         @"iPhone 7 Plus Black 258G",
+                         @"iPhone 7亮黑色"
                          ];
-    tagView.tagArray = tagData;
-    [tagView reloadData];
+    _tagView.tagArray = tagData;
+    [_tagView reloadData];
+    
+    __weak __typeof(self)weakSelf = self;
+    _tagView.layout.CompleteBlock = ^(CGFloat height) {
+        NSLog(@"%lf",height);
+        weakSelf.tagView.frame = CGRectMake(0, 150, 375, height);
+    };
     
     
+
 }
 
 @end
